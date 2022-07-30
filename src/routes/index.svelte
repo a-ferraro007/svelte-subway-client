@@ -2,7 +2,7 @@
 	export async function load({ fetch }) {
 		try {
 			let obj = {}
-			const resp = await fetch('http://localhost:8080/static')
+			const resp = await fetch('https://mta.tony.place/static')
 			if (!resp.ok) {
 				throw new Error()
 			}
