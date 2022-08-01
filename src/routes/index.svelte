@@ -67,8 +67,11 @@
 	console.log(currentStation)
 
 	const setSubway = (group, train) => {
-		subwayGroup['train'] = group
+		subwayGroup['group'] = group
+		subwayGroup['train'] = train
+		subwayGroup['color'] = 'bg-' + train
 		subwayGroup['image'] = map[group]['images'][train]
+		subwayGroup['boroughs'] = {}
 		Object.keys(map[group].stationsByBorough).forEach((borough) => {
 			let arr = []
 			map[group].stationsByBorough[borough].forEach((station) => {
@@ -76,44 +79,45 @@
 					arr.push(station)
 				}
 			})
-			subwayGroup[borough] = arr
+			subwayGroup.boroughs[borough] = arr
 		})
 	}
 </script>
 
-<div
-	class="w-100 h-routes-card mx-auto mt-36 max-h-routes-card max-w-routes-card shadow-routes-card rounded-3xl"
-	style="padding: 40px 50px;"
->
-	<div class="h-full w-100">
-		{#if !subwayGroup['train']}
-			<h1 class="font-bold text-4xl mb-2">Live Subway Times</h1>
-			<span class="inline-block w-full border-spacer border-gray-400 border-solid" />
-			<div class="flex flex-row flex-wrap">
-				{#each subwayKeys as key}
-					{#each Object.keys(map[key]?.images) as subwayImgKey}
-						<button
-							on:click={() => setSubway(key, subwayImgKey)}
-							class="mt-6"
-							style="padding-right:20px"
-						>
-							<img
-								style="height: 50px; width:50px"
-								src={map[key]?.images[subwayImgKey]}
-								alt={`subway-${subwayImgKey}`}
-							/>
-						</button>
+<div class="flex flex-col-reverse lg:flex-row justify-center gap-6 mt-16 lg:mt-28 mx-6">
+	<div
+		class="w-full h-full min-h-routes-card max-w-routes-card shadow-routes-card rounded-3xl px-4 py-4 md:px-10 md:py-12"
+	>
+		<div class="h-full w-100">
+			{#if !subwayGroup['train']}
+				<h1 class="font-bold text-xl lg:text-4xl mb-2">Live Subway Times</h1>
+				<span class="inline-block w-full border-spacer border-gray-400 border-solid" />
+				<div class="flex flex-row flex-wrap mt-4">
+					{#each subwayKeys as key}
+						{#each Object.keys(map[key]?.images) as subwayImgKey}
+							<button
+								on:click={() => setSubway(key, subwayImgKey)}
+								class="py-2 px-2 md:py-2 md:px-3"
+							>
+								<img
+									class="w-7 h-7 md:w-12 md:h-12"
+									src={map[key]?.images[subwayImgKey]}
+									alt={`subway-${subwayImgKey}`}
+								/>
+							</button>
+						{/each}
 					{/each}
-				{/each}
-			</div>
-		{:else}
-			<Stations bind:subway={subwayGroup} bind:selectedStation={currentStation} />
-		{/if}
+				</div>
+			{:else}
+				<Stations bind:subway={subwayGroup} bind:selectedStation={currentStation} />
+			{/if}
+		</div>
 	</div>
+	{#if Object.keys(currentStation).length !== 0}
+		<ActiveStation bind:subway={subwayGroup} bind:activeStation={currentStation} />
+	{/if}
 </div>
-{#if Object.keys(currentStation).length !== 0}
-	<ActiveStation bind:subway={subwayGroup} bind:activeStation={currentStation} />
-{/if}
+
 <!--const images = {
   1: '1.png',
   2: '2.png',
