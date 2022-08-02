@@ -79,7 +79,6 @@
 		</ul>
 	</div>
 	<div class="overflow-auto overflow-y-visible max-h-base-card-m lg:max-h-station-listing">
-		<div class={`hidden ${subway.color}`} />
 		{#if subway.boroughs[selected] != undefined}
 			<ul class="flex flex-row flex-wrap gap-3 mt-4">
 				{#each subway.boroughs[selected] as station}

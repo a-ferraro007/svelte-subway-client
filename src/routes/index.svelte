@@ -62,9 +62,6 @@
 	subwayKeys = subwayKeys.slice(0, subwayKeys.length - 1)
 	let subwayGroup = {}
 	let currentStation = {}
-	console.log(data)
-	console.log(subwayKeys)
-	console.log(currentStation)
 
 	const setSubway = (group, train) => {
 		subwayGroup['group'] = group
@@ -84,7 +81,7 @@
 	}
 </script>
 
-<div class="flex flex-col-reverse lg:flex-row justify-center gap-6 mt-16 lg:mt-28 mx-6">
+<div class="flex flex-col-reverse lg:flex-row justify-center gap-6 mt-16 lg:mt-28 mx-6 mb-6">
 	<div
 		class="w-full h-full min-h-routes-card max-w-routes-card shadow-routes-card rounded-3xl px-4 py-4 md:px-10 md:py-12"
 	>

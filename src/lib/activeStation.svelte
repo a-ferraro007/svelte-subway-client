@@ -18,11 +18,6 @@
 				let data = JSON.parse(messages)
 				upcomingTrains = data.parsedTrains
 				console.log(data.parsedTrains)
-
-				//mTime.innerHTML = northbound[0]?.train.timeInMinutes + ' min'
-				//bkTime.innerHTML = southbound[0]?.train.timeInMinutes + ' min'
-				//mTimeNoDelay.innerHTML = northbound[0]?.train.timeInMinutesNoDelay + ' min'
-				//bkTimeNoDelay.innerHTML = southbound[0]?.train.timeInMinutesNoDelay + ' min'
 			}
 		} catch (error) {
 			console.log(error)
@@ -37,37 +32,9 @@
 		console.log(conn)
 		conn.close()
 	})
-
-	//let south = {
-	//	borough: 'Bk',
-	//	complexId: '120',
-	//	lattitude: '40.717304',
-	//	longitude: '-73.956872',
-	//	northDirectionLabel: 'Manhattan',
-	//	routes: 'L',
-	//	southDirectionLabel: 'Canarsie - Rockaway Parkway',
-	//	stationId: '120',
-	//	stopId: 'L08',
-	//	stopName: 'Bedford Av',
-	//	subwayLine: 'Canarsie'
-	//}
-
-	//let North = {
-	//	borough: 'Bk',
-	//	complexId: '120',
-	//	lattitude: '40.717304',
-	//	longitude: '-73.956872',
-	//	northDirectionLabel: 'Manhattan',
-	//	routes: 'L',
-	//	southDirectionLabel: 'Canarsie - Rockaway Parkway',
-	//	stationId: '120',
-	//	stopId: 'L08',
-	//	stopName: 'Bedford Av',
-	//	subwayLine: 'Canarsie'
-	//}
 </script>
 
-<div class="w-full lg:max-w-xs shadow-routes-card rounded-3xl px-4 py-4 lg:px-9 lg:py-10">
+<div class="w-full lg:max-w-xs shadow-routes-card rounded-3xl px-4 py-4 lg:px-4 lg:py-4">
 	<div class="flex flex-col w-full ">
 		<button
 			class="self-end"
@@ -77,26 +44,43 @@
 		>
 			close
 		</button>
-		<div class="mt-2 lg:mt-4">
+		<div class="mb-8 mt-2 lg:mt-4">
 			<h1 class="text-lg w-1/2 lg:w-3/5 mb-1">{activeStation.stopName}</h1>
 			<img class="w-6 h-6" src={subway.image} alt="subway line" />
 		</div>
 	</div>
 
-	<div>
-		{#if upcomingTrains?.northbound}
-			<ul>
-				{#each upcomingTrains?.northbound as northbound}
-					<li><TimeCard update={northbound} /></li>
-				{/each}
-			</ul>
-		{/if}
-		{#if upcomingTrains?.southbound}
-			<ul>
-				{#each upcomingTrains?.southbound as southbound}
-					<li><TimeCard update={southbound} /></li>
-				{/each}
-			</ul>
-		{/if}
+	<div class="px-2">
+		<span class="block mb-1 text-sm text-gray-400 font-medium"> Next Trains</span>
+		<span class="block w-full border-spacer border-gray-400 border-solid" />
+
+		<div class="max-h-base-card-m lg:max-h-station-listing overflow-scroll">
+			{#if upcomingTrains?.northbound}
+				<ul>
+					{#each upcomingTrains?.northbound as northbound}
+						<li class="border-t-1 border-gray-400 first:border-t-0">
+							<TimeCard
+								update={northbound}
+								label={activeStation.northDirectionLabel}
+								image={subway.image}
+							/>
+						</li>
+					{/each}
+				</ul>
+			{/if}
+			{#if upcomingTrains?.southbound}
+				<ul>
+					{#each upcomingTrains?.southbound as southbound}
+						<li class="border-t-1 border-gray-400">
+							<TimeCard
+								update={southbound}
+								label={activeStation.southDirectionLabel}
+								image={subway.image}
+							/>
+						</li>
+					{/each}
+				</ul>
+			{/if}
+		</div>
 	</div>
 </div>
