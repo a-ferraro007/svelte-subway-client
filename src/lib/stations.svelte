@@ -53,7 +53,7 @@
 
 		<img src={subwayGroup.image} alt="subwayGroup sign" />
 	</div>
-	<span class="inline-block w-full border-spacer border-gray-400 border-solid" />
+	<span class="inline-block w-full border-t-spacer border-gray-400 border-solid" />
 	<div>
 		<ul class="flex flex-row justify-evenly list-none mb-1">
 			{#each Object.keys(subwayGroup.boroughs) as key}

@@ -88,7 +88,7 @@
 		<div class="h-full w-100">
 			{#if !subwayGroup['train']}
 				<h1 class="font-bold text-xl lg:text-4xl mb-2">Live Subway Times</h1>
-				<span class="inline-block w-full border-spacer border-gray-400 border-solid" />
+				<span class="inline-block w-full border-t-spacer border-gray-400 border-solid" />
 				<div class="flex flex-row flex-wrap mt-4">
 					{#each subwayKeys as key}
 						{#each Object.keys(map[key]?.images) as subwayImgKey}

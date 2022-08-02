@@ -52,7 +52,7 @@
 
 	<div class="px-2">
 		<span class="block mb-1 text-sm text-gray-400 font-medium"> Next Trains</span>
-		<span class="block w-full border-spacer border-gray-400 border-solid" />
+		<span class="block w-full border-t-spacer border-gray-400 border-solid" />
 
 		<div class="max-h-base-card-m lg:max-h-station-listing overflow-scroll">
 			{#if upcomingTrains?.northbound}
