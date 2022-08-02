@@ -106,7 +106,7 @@
 					{/each}
 				</div>
 			{:else}
-				<Stations bind:subway={subwayGroup} bind:selectedStation={currentStation} />
+				<Stations bind:subwayGroup bind:selectedStation={currentStation} />
 			{/if}
 		</div>
 	</div>
