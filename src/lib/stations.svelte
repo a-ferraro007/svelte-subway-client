@@ -33,7 +33,7 @@
 	}
 
 	const handleSelectStation = (station) => {
-		if ('NQRW'.includes(station.routes)) {
+		if ('N Q R W'.toLowerCase().includes(station.routes.toLowerCase())) {
 			selectedState = `${subwayGroup.color} text-black border-1 rounded-md border-solid p-2 text-xs font-semibold md:text-base`
 		}
 		selectedStation = station
