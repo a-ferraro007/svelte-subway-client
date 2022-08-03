@@ -53,8 +53,8 @@
 </script>
 
 <script>
-	import ActiveStation from '../lib/ActiveStation.svelte'
-	import Stations from '../lib/Stations.svelte'
+	import ActiveStation from '../lib/activeStation.svelte'
+	import Stations from '../lib/stations.svelte'
 
 	export let data
 	const { map } = data
