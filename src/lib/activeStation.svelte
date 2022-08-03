@@ -10,7 +10,7 @@
 	onMount(() => {
 		try {
 			conn = new WebSocket(
-				`wss://mta.tony.place:8080/ws?stopId=${activeStation.stopId}&subwayLine=${subway.group}`
+				`wss://mta.tony.place/ws?stopId=${activeStation.stopId}&subwayLine=${subway.group}`
 			)
 			console.log(activeStation)
 			conn.onmessage = function (evt) {
