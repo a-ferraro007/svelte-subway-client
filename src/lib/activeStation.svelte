@@ -10,7 +10,7 @@
 	onMount(() => {
 		try {
 			conn = new WebSocket(
-				`wss://mta.tony.place/ws?stopId=${activeStation.stopId}&subwayLine=${subway.group}`
+				`ws://localhost:8080/ws?stopId=${activeStation.stopId}&subwayLine=${subway.group}`
 			)
 			console.log(activeStation)
 			conn.onmessage = function (evt) {
@@ -42,7 +42,7 @@
 				activeStation = {}
 			}}
 		>
-			<img class="w-5 h-5" src="close.png" alt="close active station" />
+			<img class="w-5 h-5" src="close.svg" alt="close active station" />
 		</button>
 		<div class="mb-8 mt-2 lg:mt-4">
 			<h1 class="text-lg w-1/2 lg:w-3/5 mb-1 font-bold">{activeStation.stopName}</h1>

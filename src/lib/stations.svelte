@@ -48,10 +48,10 @@
 				selectedStation = {}
 			}}
 		>
-			<img class="w-5 h-5" src="arrow.png" alt="back arrow" />
+			<img class="w-5 h-5" src="arrow.svg" alt="back arrow" />
 		</button>
 
-		<img src={subwayGroup.image} alt="subwayGroup sign" />
+		<img class="w-12 h-12" src={subwayGroup.image} alt="subwayGroup sign" />
 	</div>
 	<span class="inline-block w-full border-t-spacer border-gray-400 border-solid" />
 	<div>

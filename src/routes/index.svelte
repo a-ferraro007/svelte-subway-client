@@ -9,30 +9,30 @@
 			const data = await resp.json()
 			const { NUMBERS, ACE, BDFM, G, JZ, L, NQRW, S, SERVICE } = data.map
 			ACE['images'] = {
-				A: 'a.png',
-				C: 'c.png',
-				E: 'e.png'
+				A: 'a.svg',
+				C: 'c.svg',
+				E: 'e.svg'
 			}
 			BDFM['images'] = {
-				B: 'b.png',
-				D: 'd.png',
-				F: 'f.png',
-				M: 'm.png'
+				B: 'b.svg',
+				D: 'd.svg',
+				F: 'f.svg',
+				M: 'm.svg'
 			}
-			G['images'] = { G: 'g.png' }
-			JZ['images'] = { J: 'j.png', Z: 'z.png' }
-			L['images'] = { L: 'l.png' }
+			G['images'] = { G: 'g.svg' }
+			JZ['images'] = { J: 'j.svg', Z: 'z.svg' }
+			L['images'] = { L: 'l.svg' }
 			NQRW['images'] = {
-				N: 'n.png',
-				Q: 'q.png',
-				R: 'r.png',
-				W: 'w.png'
+				N: 'n.svg',
+				Q: 'q.svg',
+				R: 'r.svg',
+				W: 'w.svg'
 			}
 			Array(...['1', '2', '3', '4', '5', '6', '7']).forEach((e) => {
-				return (obj[e] = `${e}.png`)
+				return (obj[e] = `${e}.svg`)
 			})
 			NUMBERS['images'] = obj
-			S['images'] = { S: 's.png ' }
+			S['images'] = { S: 's.svg ' }
 			SERVICE['images'] = {}
 
 			return {
@@ -53,8 +53,8 @@
 </script>
 
 <script>
-	import ActiveStation from '../lib/activeStation.svelte'
-	import Stations from '../lib/stations.svelte'
+	import ActiveStation from '../lib/ActiveStation.svelte'
+	import Stations from '../lib/Stations.svelte'
 
 	export let data
 	const { map } = data
@@ -116,27 +116,27 @@
 </div>
 
 <!--const images = {
-  1: '1.png',
-  2: '2.png',
-  3: '3.png',
-  4: '4.png',
-  5: '5.png',
-  6: '6.png',
-  7: '7.png',
-  A: 'a.png',
-  C: 'c.png',
-  E: 'e.png',
-  B: 'b.png',
-  D: 'd.png',
-  F: 'f.png',
-  M: 'm.png',
-  N: 'n.png',
-  Q: 'q.png',
-  R: 'r.png',
-  W: 'w.png',
-  L: 'l.png',
-  G: 'g.png',
-  S: 's.png ',
-  J: 'j.png',
-  Z: 'z.png'
+  1: '1.svg',
+  2: '2.svg',
+  3: '3.svg',
+  4: '4.svg',
+  5: '5.svg',
+  6: '6.svg',
+  7: '7.svg',
+  A: 'a.svg',
+  C: 'c.svg',
+  E: 'e.svg',
+  B: 'b.svg',
+  D: 'd.svg',
+  F: 'f.svg',
+  M: 'm.svg',
+  N: 'n.svg',
+  Q: 'q.svg',
+  R: 'r.svg',
+  W: 'w.svg',
+  L: 'l.svg',
+  G: 'g.svg',
+  S: 's.svg ',
+  J: 'j.svg',
+  Z: 'z.svg'
 }-->
