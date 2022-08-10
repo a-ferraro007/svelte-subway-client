@@ -1,6 +1,6 @@
 <script>
 	import { afterUpdate, onMount, onDestroy } from 'svelte'
-	import TimeCard from './timeCard.svelte'
+	import Feed from './Feed.svelte'
 
 	export let activeStation
 	export let subway
@@ -10,13 +10,14 @@
 	onMount(() => {
 		try {
 			conn = new WebSocket(
-				`wss://mta.tony.place/ws?stopId=${activeStation.stopId}&subwayLine=${subway.group}`
+				`ws://localhost:8080/ws?stopId=${activeStation.stopId}&group=${subway.group}&subway=${subway.train}`
 			)
 			console.log(activeStation)
 			conn.onmessage = function (evt) {
 				var messages = evt.data.split('\n')
 				let data = JSON.parse(messages)
 				upcomingTrains = data.parsedTrains
+				console.log(data)
 			}
 		} catch (error) {
 			console.log(error)
@@ -45,7 +46,7 @@
 		</button>
 		<div class="mb-8 mt-2 lg:mt-4">
 			<h1 class="text-lg w-1/2 lg:w-3/5 mb-1 font-bold">{activeStation.stopName}</h1>
-			<img class="w-6 h-6" src={subway.image} alt="subway line" />
+			<img class="w-6 h-6" src={`${subway.train.toUpperCase()}.svg`} alt="subway line" />
 		</div>
 	</div>
 
@@ -53,33 +54,8 @@
 		<span class="block mb-1 text-sm text-gray-400 font-medium"> Next Trains</span>
 		<span class="block w-full border-t-spacer border-gray-400 border-solid" />
 
-		<div class="max-h-base-card-m lg:max-h-station-listing overflow-scroll">
-			{#if upcomingTrains?.northbound}
-				<ul>
-					{#each upcomingTrains?.northbound as northbound}
-						<li class="border-t-1 border-gray-400 first:border-t-0">
-							<TimeCard
-								update={northbound}
-								label={activeStation.northDirectionLabel}
-								image={subway.image}
-							/>
-						</li>
-					{/each}
-				</ul>
-			{/if}
-			{#if upcomingTrains?.southbound}
-				<ul>
-					{#each upcomingTrains?.southbound as southbound}
-						<li class="border-t-1 border-gray-400">
-							<TimeCard
-								update={southbound}
-								label={activeStation.southDirectionLabel}
-								image={subway.image}
-							/>
-						</li>
-					{/each}
-				</ul>
-			{/if}
-		</div>
+		{#if upcomingTrains}
+			<Feed update={upcomingTrains} station={activeStation} {subway} />
+		{/if}
 	</div>
 </div>

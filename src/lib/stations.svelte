@@ -1,14 +1,14 @@
 <script>
-	export let subwayGroup
+	export let subway
 	export let selectedStation = undefined
 	let selected
-	let selectedState = `${subwayGroup.color} text-white border-1 rounded-md border-solid p-2 text-xs md:text-base font-semibold`
+	let selectedState = `${subway.color} text-white border-1 rounded-md border-solid p-2 text-xs md:text-base font-semibold`
 	let steadyState =
 		'border-1 rounded-md border-gray-700 border-solid p-2 text-xs md:text-base font-semibold'
 	//Not sure why but this fixes the issue of the dynamic
 	//tailwind class not working.
 	console.log(
-		'bg-A bg-C bg-E bg-B bg-D bg-F bg-M bg-N bg-R bg-Q bg-W bg-G bg-L bg-S bg-J bg-Z bg-1 bg-2 bg-3 bg-4 bg-5 bg-6 bg-7'
+		'bg-A bg-C bg-E bg-B bg-D bg-F bg-M bg-N bg-R bg-Q bg-W bg-G bg-L bg-S bg-J bg-Z bg-ONE bg-TWO bg-THREE bg-FOUR bg-FIVE bg-SIX bg-SEVEN'
 	)
 
 	//Move to TS enum at some point
@@ -19,9 +19,9 @@
 		Q: 'Queens'
 	}
 
-	Object.keys(subwayGroup.boroughs).forEach((e) => {
+	Object.keys(subway.boroughs).forEach((e) => {
 		if ((e === 'Bk' || e === 'Bx' || e === 'M' || e === 'Q') && !selected) {
-			if (subwayGroup.boroughs[e].length > 0) {
+			if (subway.boroughs[e].length > 0) {
 				selected = e
 				return
 			}
@@ -33,31 +33,32 @@
 	}
 
 	const handleSelectStation = (station) => {
-		if ('N Q R W'.toLowerCase().includes(station.routes.toLowerCase())) {
-			selectedState = `${subwayGroup.color} text-black border-1 rounded-md border-solid p-2 text-xs font-semibold md:text-base`
+		if ('N Q R W'.toUpperCase().includes(station.routes.toUpperCase())) {
+			selectedState = `${subway.color} text-black border-1 rounded-md border-solid p-2 text-xs font-semibold md:text-base`
 		}
 		selectedStation = station
 	}
+	console.log(subway)
 </script>
 
 <div class="h-full w-full">
 	<div class="flex justify-between">
 		<button
 			on:click={() => {
-				subwayGroup = {}
+				subway = {}
 				selectedStation = {}
 			}}
 		>
 			<img class="w-5 h-5" src="arrow.svg" alt="back arrow" />
 		</button>
 
-		<img class="w-12 h-12" src={subwayGroup.image} alt="subwayGroup sign" />
+		<img class="w-12 h-12" src={`${subway.train.toUpperCase()}.svg`} alt="subway sign" />
 	</div>
 	<span class="inline-block w-full border-t-spacer border-gray-400 border-solid" />
 	<div>
 		<ul class="flex flex-row justify-evenly list-none mb-1">
-			{#each Object.keys(subwayGroup.boroughs) as key}
-				{#if subwayGroup.boroughs[key].length > 0}
+			{#each Object.keys(subway.boroughs) as key}
+				{#if subway.boroughs[key].length > 0}
 					<li>
 						<button
 							class={selected === key
@@ -73,9 +74,9 @@
 		</ul>
 	</div>
 	<div class="overflow-auto overflow-y-visible max-h-base-card-m lg:max-h-station-listing">
-		{#if subwayGroup.boroughs[selected] != undefined}
+		{#if subway.boroughs[selected] != undefined}
 			<ul class="flex flex-row flex-wrap gap-3 mt-4">
-				{#each subwayGroup.boroughs[selected] as station}
+				{#each subway.boroughs[selected] as station}
 					<li>
 						<button
 							on:click={() => handleSelectStation(station)}
