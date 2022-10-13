@@ -2,12 +2,13 @@
 	export async function load({ fetch }) {
 		try {
 			let obj = {}
-			const resp = await fetch('https://mta.tony.place/static')
+			const resp = await fetch('https://mta.tony.place/stations')
 			if (!resp.ok) {
 				throw new Error()
 			}
 			const data = await resp.json()
-			const { NUMBERS, ACE, BDFM, G, JZ, L, NQRW, S, SERVICE } = data.map
+			//console.log(data.map.NUMBERS)
+			const { NUMBERS, ACE, BDFM, G, JZ, L, NQRW, S, SERVICE } = data
 			ACE['images'] = {
 				A: 'a.svg',
 				C: 'c.svg',
@@ -57,7 +58,7 @@
 	import Stations from '../lib/stations.svelte'
 
 	export let data
-	const { map } = data
+	const map = data
 	let subwayKeys = Object.keys(map)
 	subwayKeys = subwayKeys.slice(0, subwayKeys.length - 1)
 	let subwayGroup = {}

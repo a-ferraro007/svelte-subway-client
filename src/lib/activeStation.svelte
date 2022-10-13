@@ -10,12 +10,13 @@
 	onMount(() => {
 		try {
 			conn = new WebSocket(
-				`wss://mta.tony.place/ws?stopId=${activeStation.stopId}&subwayLine=${subway.group}`
+				`wss://mta.tony.place/ws?stopID=${activeStation.stopID}&subwayLine=${subway.group}`
 			)
 			console.log(activeStation)
 			conn.onmessage = function (evt) {
 				var messages = evt.data.split('\n')
 				let data = JSON.parse(messages)
+				console.log(data)
 				upcomingTrains = data.parsedTrains
 			}
 		} catch (error) {

@@ -79,7 +79,7 @@
 					<li>
 						<button
 							on:click={() => handleSelectStation(station)}
-							class={selectedStation.stopId === station.stopId ? selectedState : steadyState}
+							class={selectedStation.stopID === station.stopID ? selectedState : steadyState}
 						>
 							{station.stopName}
 						</button>
