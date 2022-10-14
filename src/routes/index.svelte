@@ -83,34 +83,36 @@
 </script>
 
 <div class="flex flex-col-reverse lg:flex-row justify-center gap-6 mt-16 lg:mt-28 mx-6 mb-6">
-	<div
-		class="w-full h-full min-h-routes-card max-w-routes-card shadow-routes-card rounded-3xl px-4 py-4 md:px-10 md:py-12"
-	>
-		<div class="h-full w-100">
-			{#if !subwayGroup['train']}
-				<h1 class="font-bold text-xl lg:text-4xl mb-2">Live Subway Times</h1>
-				<span class="inline-block w-full border-t-spacer border-gray-400 border-solid" />
-				<div class="flex flex-row flex-wrap mt-4">
-					{#each subwayKeys as key}
-						{#each Object.keys(map[key]?.images) as subwayImgKey}
-							<button
-								on:click={() => setSubway(key, subwayImgKey)}
-								class="py-2 px-2 md:py-2 md:px-3"
-							>
-								<img
-									class="w-7 h-7 md:w-12 md:h-12"
-									src={map[key]?.images[subwayImgKey]}
-									alt={`subway-${subwayImgKey}`}
-								/>
-							</button>
+	{#if Object.keys(currentStation).length == 0}
+		<div
+			class="w-full h-full min-h-routes-card max-w-routes-card rounded-3xl px-4 py-4 md:px-10 md:py-12 bg-white"
+		>
+			<div class="h-full w-100">
+				{#if !subwayGroup['train']}
+					<h1 class="font-bold text-xl lg:text-4xl mb-2">Live Subway Times</h1>
+					<span class="inline-block w-full border-t-spacer border-gray-400 border-solid" />
+					<div class="flex flex-row flex-wrap mt-4">
+						{#each subwayKeys as key}
+							{#each Object.keys(map[key]?.images) as subwayImgKey}
+								<button
+									on:click={() => setSubway(key, subwayImgKey)}
+									class="py-2 px-2 md:py-2 md:px-3"
+								>
+									<img
+										class="w-7 h-7 md:w-12 md:h-12"
+										src={map[key]?.images[subwayImgKey]}
+										alt={`subway-${subwayImgKey}`}
+									/>
+								</button>
+							{/each}
 						{/each}
-					{/each}
-				</div>
-			{:else}
-				<Stations bind:subwayGroup bind:selectedStation={currentStation} />
-			{/if}
+					</div>
+				{:else}
+					<Stations bind:subwayGroup bind:selectedStation={currentStation} />
+				{/if}
+			</div>
 		</div>
-	</div>
+	{/if}
 	{#if Object.keys(currentStation).length !== 0}
 		<ActiveStation bind:subway={subwayGroup} bind:activeStation={currentStation} />
 	{/if}
