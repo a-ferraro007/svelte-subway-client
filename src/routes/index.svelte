@@ -82,7 +82,7 @@
 	}
 </script>
 
-<div class="flex flex-col-reverse lg:flex-row justify-center gap-6 mt-16 lg:mt-28 mx-6 mb-6">
+<div class="flex flex-col-reverse lg:flex-row justify-center gap-6 mt-7 lg:mt-28 mx-6 mb-6">
 	{#if Object.keys(currentStation).length == 0}
 		<div
 			class="w-full h-full min-h-routes-card max-w-routes-card rounded-3xl px-4 py-4 md:px-10 md:py-12 bg-white"
