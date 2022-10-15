@@ -82,16 +82,16 @@
 	}
 </script>
 
-<div class="flex flex-col-reverse lg:flex-row justify-center gap-6 mt-7 lg:mt-28 mx-6 mb-6">
+<div class="flex flex-col-reverse lg:flex-row justify-center gap-6 mt-7 lg:mt-16 mx-6 mb-6">
 	{#if Object.keys(currentStation).length == 0}
 		<div
-			class="w-full h-full min-h-routes-card max-w-routes-card rounded-3xl px-4 py-4 md:px-10 md:py-12 bg-white"
+			class="w-full h-full min-h-routes-card max-w-routes-card rounded-xl px-4 py-4 md:px-10 md:py-12 bg-white"
 		>
 			<div class="h-full w-100">
 				{#if !subwayGroup['train']}
-					<h1 class="font-bold text-xl lg:text-4xl mb-2">Live Subway Times</h1>
+					<h1 class="font-bold text-xl text-[#4a4a4a] lg:text-4xl mb-2">Live Subway Times</h1>
 					<span class="inline-block w-full border-t-spacer border-gray-400 border-solid" />
-					<div class="flex flex-row flex-wrap mt-4">
+					<div class="flex flex-row flex-wrap md:mt-4 justify-center md:justify-start">
 						{#each subwayKeys as key}
 							{#each Object.keys(map[key]?.images) as subwayImgKey}
 								<button
