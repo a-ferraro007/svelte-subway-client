@@ -34,7 +34,7 @@
 	})
 </script>
 
-<div class="w-full lg:max-w-xs rounded-xl px-3 py-3">
+<div class="w-full lg:max-w-xs rounded-xl ">
 	<div class="flex flex-col w-full ">
 		<button
 			class="self-end"
