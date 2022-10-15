@@ -2,9 +2,9 @@
 	export let subwayGroup
 	export let selectedStation = undefined
 	let selected
-	let selectedState = `${subwayGroup.color} text-white border-1 rounded-md border-solid p-2 text-xs md:text-base font-semibold`
+	let selectedState = `${subwayGroup.color} text-white border-1 rounded-md border-solid p-2 text-xs text-[#4a4a4a] md:text-base font-semibold`
 	let steadyState =
-		'border-1 rounded-md border-gray-700 border-solid p-2 text-xs md:text-base font-semibold'
+		'border-1 rounded-md border-gray-700 border-solid p-2 text-xs text-[#4a4a4a] md:text-base font-semibold'
 	//Not sure why but this fixes the issue of the dynamic
 	//tailwind class not working.
 	console.log(
@@ -34,7 +34,7 @@
 
 	const handleSelectStation = (station) => {
 		if ('N Q R W'.toLowerCase().includes(station.routes.toLowerCase())) {
-			selectedState = `${subwayGroup.color} text-black border-1 rounded-md border-solid p-2 text-xs font-semibold md:text-base`
+			selectedState = `${subwayGroup.color} text-[#4a4a4a] border-1 border-[#4a4a4a] rounded-md border-solid p-2 text-xs font-semibold md:text-base`
 		}
 		selectedStation = station
 	}
@@ -53,7 +53,9 @@
 
 		<img class="w-12 h-12" src={subwayGroup.image} alt="subwayGroup sign" />
 	</div>
-	<span class="inline-block w-full border-t-spacer border-gray-400 border-solid" />
+	<span
+		class="inline-block w-full border-t-spacer border-[#4a4a4a] border-opacity-[.25] border-solid"
+	/>
 	<div>
 		<ul class="flex flex-row justify-evenly list-none mb-1">
 			{#each Object.keys(subwayGroup.boroughs) as key}
@@ -61,8 +63,8 @@
 					<li>
 						<button
 							class={selected === key
-								? 'border-b-1 border-black text-sm font-bold'
-								: 'text-sm font-bold'}
+								? 'border-b-1 border-[#4a4a4a] border-opacity-[.25] text-sm text-[#4a4a4a] font-bold'
+								: 'text-sm font-bold text-[#4a4a4a]'}
 							on:click={() => handleBoroughSelect(key)}
 						>
 							{boroughName[key]}
